@@ -1,6 +1,8 @@
 package ceit.utils;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FileUtils {
 
@@ -24,8 +26,32 @@ public class FileUtils {
     }
 
     public static void fileWriter(String content) {
-        //TODO: write content on file
+
         String fileName = getProperFileName(content);
+
+        // Create file
+//        try {
+//            File myObj = new File("./notes/" + fileName);
+//            if (myObj.createNewFile()) {
+//                System.out.println("File created: " + myObj.getName());
+//            } else {
+//                System.out.println("File already exists.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+
+        // Write content in file
+        try {
+            FileWriter myWriter = new FileWriter("./notes/" + fileName);
+            myWriter.write(content);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     //TODO: Phase1: define method here for reading file with InputStream
