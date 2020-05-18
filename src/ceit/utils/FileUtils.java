@@ -1,6 +1,10 @@
 package ceit.utils;
 
+import ceit.model.Note;
+
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class FileUtils {
@@ -94,7 +98,45 @@ public class FileUtils {
         }
     }
 
-    //TODO: Phase2: proper methods for handling serialization
+    public static String objectInputStream(File file) {
+
+        try (FileInputStream fin = new FileInputStream(file.getPath())) {
+
+            ObjectInputStream oin = new ObjectInputStream(fin);
+
+            Note note = (Note) oin.readObject();
+            return note.toString();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static void objectOutputStream(String content) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        String fileName = getProperFileName(content);
+
+        Note note = new Note(fileName, content, dtf.format(now));
+
+        try (FileOutputStream fout = new FileOutputStream("./notes/" + fileName)) {
+
+            ObjectOutputStream os = new ObjectOutputStream(fout);
+
+            os.writeObject(note);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private static String getProperFileName(String content) {
         int loc = content.indexOf("\n");
