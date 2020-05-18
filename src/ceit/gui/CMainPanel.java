@@ -68,7 +68,13 @@ public class CMainPanel extends JPanel {
         JTextArea textPanel = (JTextArea) tabbedPane.getSelectedComponent();
         String note = textPanel.getText();
         if (!note.isEmpty()) {
-            FileUtils.fileWriter(note);
+            // uncomment one line
+
+//            FileUtils.fileWriter(note);
+//            FileUtils.fileOutputStream(note);
+
+            // method for use serialization
+            FileUtils.objectOutputStream(note);
         }
         updateListGUI();
     }
@@ -94,7 +100,17 @@ public class CMainPanel extends JPanel {
                 System.out.println("Item " + index + " is clicked...");
                 //TODO: Phase1: Click on file is handled... Just load content into JTextArea
                 File curr[] = FileUtils.getFilesInDirectory();
-                String content = FileUtils.fileReader(curr[index]);
+
+                String content = "";
+
+                // uncomment one line
+
+//                content = FileUtils.fileReader(curr[index]);
+//                content = FileUtils.fileInputStream(curr[index]);
+
+                // method for use serialization
+                content = FileUtils.objectInputStream(curr[index]);
+
                 openExistingNote(content);
             }
         }
