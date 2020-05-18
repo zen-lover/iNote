@@ -68,13 +68,15 @@ public class CMainPanel extends JPanel {
         JTextArea textPanel = (JTextArea) tabbedPane.getSelectedComponent();
         String note = textPanel.getText();
         if (!note.isEmpty()) {
+
             // uncomment one line
 
 //            FileUtils.fileWriter(note);
-//            FileUtils.fileOutputStream(note);
+
+            FileUtils.fileOutputStream(note);
 
             // method for use serialization
-            FileUtils.objectOutputStream(note);
+//            FileUtils.objectOutputStream(note);
         }
         updateListGUI();
     }
@@ -105,10 +107,11 @@ public class CMainPanel extends JPanel {
                 // uncomment one line
 
 //                content = FileUtils.fileReader(curr[index]);
-//                content = FileUtils.fileInputStream(curr[index]);
+
+                content = FileUtils.fileInputStream(curr[index]);
 
                 // method for use serialization
-                content = FileUtils.objectInputStream(curr[index]);
+//                content = FileUtils.objectInputStream(curr[index]);
 
                 openExistingNote(content);
             }
