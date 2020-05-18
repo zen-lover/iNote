@@ -18,7 +18,6 @@ public class FileUtils {
         return new File(NOTES_PATH).listFiles();
     }
 
-
     public static String fileReader(File file) {
         String content = "";
         try {
@@ -82,7 +81,18 @@ public class FileUtils {
         return content;
     }
 
-    //TODO: Phase1: define method here for writing file with OutputStream
+    public static void fileOutputStream(String content) {
+        String fileName = getProperFileName(content);
+        try {
+            FileOutputStream fout = new FileOutputStream("./notes/" + fileName);
+            byte b[] = content.getBytes();//converting string into byte array
+            fout.write(b);
+            fout.close();
+            System.out.println("success...");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     //TODO: Phase2: proper methods for handling serialization
 
