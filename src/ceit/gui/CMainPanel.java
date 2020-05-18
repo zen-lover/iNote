@@ -98,7 +98,6 @@ public class CMainPanel extends JPanel {
             if (eve.getClickCount() == 2) {
                 int index = directoryList.locationToIndex(eve.getPoint());
                 System.out.println("Item " + index + " is clicked...");
-                //TODO: Phase1: Click on file is handled... Just load content into JTextArea
                 File curr[] = FileUtils.getFilesInDirectory();
 
                 String content = "";
