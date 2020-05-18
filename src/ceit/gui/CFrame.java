@@ -53,7 +53,11 @@ public class CFrame extends JFrame implements ActionListener {
         } else if (e.getSource() == saveItem) {
             mainPanel.saveNote();
         } else if (e.getSource() == exitItem) {
-            //TODO: Phase1: check all tabs saved ...
+            int tabSize = mainPanel.getTabbedPane().getTabCount();
+            for (int i=0; i<tabSize; i++){
+                mainPanel.getTabbedPane().setSelectedIndex(i);
+                mainPanel.saveNote();
+            }
             System.exit(0);
         } else {
             System.out.println("Nothing detected...");
