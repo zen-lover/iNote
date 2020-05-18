@@ -121,4 +121,8 @@ public class CMainPanel extends JPanel {
             return this;
         }
     }
+
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
 }
