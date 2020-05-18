@@ -10,6 +10,7 @@ public class Main {
         CFrame frame = new CFrame("iNote");
         frame.setVisible(true);
         frame.setSize(500, 500);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
