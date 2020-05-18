@@ -1,8 +1,10 @@
 package ceit.utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class FileUtils {
 
@@ -21,8 +23,20 @@ public class FileUtils {
 
 
     public static String fileReader(File file) {
-        //TODO: Phase1: read content from file
-        return "";
+        String content = "";
+        try {
+            File myObj = file;
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                content += data + "\n";
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return content;
     }
 
     public static void fileWriter(String content) {
