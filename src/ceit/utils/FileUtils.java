@@ -1,9 +1,6 @@
 package ceit.utils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileUtils {
@@ -68,7 +65,23 @@ public class FileUtils {
         }
     }
 
-    //TODO: Phase1: define method here for reading file with InputStream
+    public static String fileInputStream(File file) {
+        String content = "";
+        try {
+            FileInputStream fin = new FileInputStream(file.getPath());
+            int i = 0;
+            while ((i = fin.read()) != -1) {
+                char c = (char) i;
+                content += c;
+            }
+            fin.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return content;
+    }
+
     //TODO: Phase1: define method here for writing file with OutputStream
 
     //TODO: Phase2: proper methods for handling serialization
